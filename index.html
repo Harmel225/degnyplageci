@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href='image/logo_icone.ico' rel='shortcut icon'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degny Plage Hôtel - San Pedro</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #c19a6b;
+            --secondary-color: #2c3e50;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, #a87f52 100%);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('image/bd_5.webp') center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 48%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 52%
+            );
+            animation: shimmer 20s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg) translateZ(0); }
+            100% { transform: rotate(360deg) translateZ(0); }
+        }
+        
+        .room-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+        
+        .room-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .room-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .room-card img {
+            transition: transform 0.4s ease;
+        }
+        
+        .room-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .room-card::before {
+            z-index: 1;
+        }
+
+        .room-card .btn {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        /* Animation au survol */
+        .room-card .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(194, 154, 107, 0.3);
+        }
+        
+        .amenities-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(194, 154, 107, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .amenities-icon:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(194, 154, 107, 0.2);
+        }
+        
+        .booking-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-100px);
+            margin-bottom: -100px;
+        }
+        
+        .form-control {
+            border: 2px solid #eee;
+            height: 50px;
+            padding-left: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(194, 154, 107, 0.3);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 80px 0 40px;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .scroll-top.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+        border-radius: 20px;
+        overflow: hidden;
+        border: none;
+        }
+        
+        .modal-header {
+            background: var(--gradient);
+            color: white;
+            border-bottom: none;
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(193, 154, 107, 0.2);
+        }
+        
+        .form-check-label {
+            font-size: 0.9rem;
+        }
+
+        .gallery-modal .modal-content {
+            background: #111;
+            border-radius: 15px;
+        }
+        
+        .carousel-item {
+            height: 70vh;
+            background: black;
+        }
+        
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+        }
+        
+        .modal-title {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            color: white;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 80vh;
+            }
+            
+            .booking-form {
+                transform: none;
+                margin-bottom: 0;
+            }
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 500px;
+            background: var(--secondary-color);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(20%) contrast(90%);
+            transition: transform 0.3s ease;
+        }
+
+        .map-container:hover iframe {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .loading::after {
+            content: ".";
+            animation: dots 1.5s infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: "."; }
+            40% { content: ".."; }
+            60% { content: "..."; }
+            80%, 100% { content: ""; }
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .cursor-zoom {
+            cursor: zoom-in;
+        }
+
+        #roomGalleryModal .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #roomGalleryModal .carousel-item {
+            max-height: 70vh;
+        }
+
+        #roomGalleryModal img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Scroll to Top -->
+<div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <!-- Remplacez "votre-logo.png" par le chemin de votre image -->
+            <img src="image/logo.png" alt="Logo Hôtel" class="img-fluid" style="height: 50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#rooms">Chambres</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#salles">Salles de conférences</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Localisation</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" id="home">
+    <div class="container text-center position-relative">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="display-4 fw-bold mb-4">Bienvenue à <span class="text-primary">Degny Plage Hôtel</span></h1>
+            <p class="lead mb-4">Nous vous offrons une expérience unique, alliant luxe, détente et découverte en bordure de mer de la ville de San Pedro.</p>
+            <!-- Modifiez le bouton "Réserver maintenant" dans la section Hero -->
+            <a href="#booking" class="btn btn-primary btn-lg px-5" data-bs-toggle="modal" data-bs-target="#bookingModal">Réserver maintenant</a>
+        </div>
+    </div>
+</section>
+
+<!-- Rooms Section -->
+<section id="rooms" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Nos Chambres</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">25.000 FCFA/nuit</div>
+                    <img src="image/Mini_Standard/1.webp" class="card-img-top" alt="Mini Standard">
+                    <div class="card-body">
+                        <h5 class="card-title">Mini Standard</h5>
+                        <p class="card-text text-muted">Espace compact et fonctionnel, parfait pour les voyageurs en solo ou les séjours économiques.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Mini Standard"
+                                data-images='[
+                                    "image/Mini_Standard/1.webp",
+                                    "image/Mini_Standard/2.webp",
+                                    "image/Mini_Standard/3.webp",
+                                    "image/Mini_Standard/4.webp",
+                                    "image/Mini_Standard/5.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">35.000 FCFA/nuit</div>
+                    <img src="image/Standard/1.webp" class="card-img-top" alt="Standard">
+                    <div class="card-body">
+                        <h5 class="card-title">Standard</h5>
+                        <p class="card-text text-muted">Bon compromis entre espace et prix, avec un confort supplémentaire.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Standard"
+                                data-images='[
+                                    "image/Standard/1.webp",
+                                    "image/Standard/2.webp",
+                                    "image/Standard/3.webp",
+                                    "image/Standard/4.webp",
+                                    "image/Standard/5.webp",
+                                    "image/Standard/6.webp",
+                                    "image/Standard/7.webp",
+                                    "image/Standard/8.webp",
+                                    "image/Standard/9.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">45.000 FCFA/nuit</div>
+                    <img src="image/Bungalow/3.webp" class="card-img-top" alt="Bungalow">
+                    <div class="card-body">
+                        <h5 class="card-title">Bungalow</h5>
+                        <p class="card-text text-muted">Chambre charmante et privée, idéale pour un recueillement tranquille, avec un cadre apaisant.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Bungalow"
+                                data-images='[
+                                    "image/Bungalow/1.webp",
+                                    "image/Bungalow/3.webp",
+                                    "image/Bungalow/4.webp",
+                                    "image/Bungalow/5.webp",
+                                    "image/Bungalow/6.webp",
+                                    "image/Bungalow/7.webp",
+                                    "image/Bungalow/8.webp" 
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">50.000 FCFA/nuit</div>
+                    <img src="image/Mini_VIP/4.webp" class="card-img-top" alt="Mini VIP">
+                    <div class="card-body">
+                        <h5 class="card-title">Mini VIP</h5>
+                        <p class="card-text text-muted">Chambre classique, spacieuse et bien équipée, offrant un excellent rapport qualité-prix.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Mini VIP"
+                                data-images='[
+                                    "image/Mini_VIP/1.webp",
+                                    "image/Mini_VIP/2.webp",
+                                    "image/Mini_VIP/3.webp",
+                                    "image/Mini_VIP/4.webp",
+                                    "image/Mini_VIP/5.webp",
+                                    "image/Mini_VIP/6.webp",
+                                    "image/Mini_VIP/7.webp",
+                                    "image/Mini_VIP/8.webp",
+                                    "image/Mini_VIP/9.webp" 
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">60.000 FCFA/nuit</div>
+                    <img src="image/VIP/1.webp" class="card-img-top" alt="VIP">
+                    <div class="card-body">
+                        <h5 class="card-title">VIP</h5>
+                        <p class="card-text text-muted">Chambre élégante avec des services exclusifs, idéale pour les voyageurs exigeants.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="VIP"
+                                data-images='[
+                                    "image/VIP/1.webp",
+                                    "image/VIP/2.webp",
+                                    "image/VIP/3.webp",
+                                    "image/VIP/4.webp",
+                                    "image/VIP/5.webp",
+                                    "image/VIP/6.webp",
+                                    "image/VIP/7.webp",
+                                    "image/VIP/8.webp",
+                                    "image/VIP/9.webp" 
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">70.000 FCFA/nuit</div>
+                    <img src="image/Mini_Suite/3.webp" class="card-img-top" alt="Mini Suite">
+                    <div class="card-body">
+                        <h5 class="card-title">Mini Suite</h5>
+                        <p class="card-text text-muted">Combinaison d'élégance et de modernité, avec un espace plus grand pour un séjour romantique, professionnel ou familiale.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Mini Suite"
+                                data-images='[
+                                    "image/Mini_Suite/1.webp",
+                                    "image/Mini_Suite/2.webp",
+                                    "image/Mini_Suite/3.webp",
+                                    "image/Mini_Suite/4.webp",
+                                    "image/Mini_Suite/5.webp",
+                                    "image/Mini_Suite/6.webp",
+                                    "image/Mini_Suite/7.webp",
+                                    "image/Mini_Suite/8.webp",
+                                    "image/Mini_Suite/9.webp",
+                                    "image/Mini_Suite/9.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">100.000 FCFA/nuit</div>
+                    <img src="image/Mezzanine/4.webp" class="card-img-top" alt="Mezzanine">
+                    <div class="card-body">
+                        <h5 class="card-title">Mezzanine</h5>
+                        <p class="card-text text-muted">Chambre unique sur plusieurs niveaux, combinant charme et exclusivité, idéale pour les familles ou les séjours prolongés.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Mezzanine"
+                                data-images='[
+                                    "image/Mezzanine/1.webp",
+                                    "image/Mezzanine/2.webp",
+                                    "image/Mezzanine/3.webp",
+                                    "image/Mezzanine/4.webp",
+                                    "image/Mezzanine/5.webp",
+                                    "image/Mezzanine/6.webp",
+                                    "image/Mezzanine/7.webp",
+                                    "image/Mezzanine/8.webp",
+                                    "image/Mezzanine/9.webp",
+                                    "image/Mezzanine/10.webp",
+                                    "image/Mezzanine/11.webp",
+                                    "image/Mezzanine/12.webp",
+                                    "image/Mezzanine/13.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">180.000 FCFA/nuit</div>
+                    <img src="image/Suite/4.webp" class="card-img-top" alt="Suite">
+                    <div class="card-body">
+                        <h5 class="card-title">Suite</h5>
+                        <p class="card-text text-muted">La quintessence du luxe et de l'espace, parfaite pour les voyageurs exigeants ou les occasions spéciales, avec des prestations de premier choix.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Suite"
+                                data-images='[
+                                    "image/Suite/1.webp",
+                                    "image/Suite/2.webp",
+                                    "image/Suite/3.webp",
+                                    "image/Suite/4.webp",
+                                    "image/Suite/5.webp",
+                                    "image/Suite/6.webp",
+                                    "image/Suite/7.webp",
+                                    "image/Suite/8.webp",
+                                    "image/Suite/9.webp",
+                                    "image/Suite/10.webp",
+                                    "image/Suite/11.webp",
+                                    "image/Suite/12.webp",
+                                    "image/Suite/13.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Ajouter d'autres chambres -->
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Nos Services Exclusifs</h2>
+        <div class="row g-5">
+            <div class="col-md-4 text-center">
+                <div class="amenities-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <h4>Service Concierge 24/7</h4>
+                <p class="text-muted">Notre équipe dévouée est à votre service à tout moment</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="amenities-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h4>WiFi Haut Débit</h4>
+                <p class="text-muted">Connexion illimitée dans tout l'établissement</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="amenities-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h4>Restaurant Gastronomique</h4>
+                <p class="text-muted">Cuisine étoilée avec produits locaux</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="amenities-icon">
+                    <i class="fas fa-swimming-pool"></i>
+                </div>
+                <h4>Piscine</h4>
+                <p class="text-muted">Petit Bassin pour les plus jeunes/Grand Bassin pour les plus grands</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="amenities-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h4>Espace de jeux Enfants</h4>
+                <p class="text-muted">Espace sécurisé avec activités récréatives</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="amenities-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h4>Jardins Privatifs</h4>
+                <p class="text-muted">Des espaces verts aménagés</p>
+            </div>
+            <!-- Ajouter d'autres services -->
+        </div>
+    </div>
+</section>
+
+<!-- Salles Section -->
+<section id="salles" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Nos Salles de conférence</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">80.000 FCFA</div>
+                    <img src="image/NZI/1.webp" class="card-img-top" alt="Salle N'ZI">
+                    <div class="card-body">
+                        <h5 class="card-title">Salle N'ZI</h5>
+                        <p class="card-text text-muted">Une salle pouvant contenir jusqu'à 15 personnes.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Salle N'ZI"
+                                data-images='[
+                                    "image/NZI/1.webp",
+                                    "image/NZI/2.webp",
+                                    "image/NZI/3.webp",
+                                    "image/NZI/4.webp",
+                                    "image/NZI/5.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">150.000 FCFA</div>
+                    <img src="image/Comoe/1.webp" class="card-img-top" alt="Salle Comoe">
+                    <div class="card-body">
+                        <h5 class="card-title">Salle Comoe</h5>
+                        <p class="card-text text-muted">Une salle pouvant contenir jusqu'à 50 personnes.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Salle Comoe"
+                                data-images='[
+                                    "image/Comoe/1.webp",
+                                    "image/Comoe/2.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">250.000 FCFA</div>
+                    <img src="image/Sassandra/1.webp" class="card-img-top" alt="Sassandra">
+                    <div class="card-body">
+                        <h5 class="card-title">Sassandra</h5>
+                        <p class="card-text text-muted">Une salle pouvant contenir jusqu'à 150 personnes.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Sassandra"
+                                data-images='[
+                                    "image/Sassandra/1.webp",
+                                    "image/Sassandra/3.webp",
+                                    "image/Sassandra/4.webp",
+                                    "image/Sassandra/5.webp"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <div class="price-tag">700.000 FCFA</div>
+                    <img src="image/Allabo/1.png" class="card-img-top" alt="Salle Allabo">
+                    <div class="card-body">
+                        <h5 class="card-title">Salle Allabo</h5>
+                        <p class="card-text text-muted">Une salle pouvant contenir jusqu'à 500 personnes.</p>
+                        <button class="btn btn-primary show-gallery" 
+                                data-room="Salle Allabo"
+                                data-images='[
+                                    "image/Allabo/1.png"
+                                ]'>
+                            Découvrir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Ajouter d'autres salles -->
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-md-6">
+                <div class="map-container position-relative rounded-3 overflow-hidden shadow-lg">
+                    <!-- Remplacez les coordonnées par votre adresse -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.2416532226093!2d-6.637072524101997!3d4.728037195247099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf96130e33a3757f%3A0x728212498800d757!2sDEGNY%20PLAGE%20H%C3%94TEL%20SAN%20PEDRO!5e0!3m2!1sfr!2sci!4v1742467187432!5m2!1sfr!2sci" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="section-title mb-4">Galerie de l'Hôtel</h2>
+                <div class="row g-3 gallery-grid">
+                    <!-- Image principale -->
+                    <div class="col-12">
+                        <div class="gallery-item rounded-3 overflow-hidden" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="url1">
+                            <img src="image/gallerie/bd_9.webp" 
+                                 class="img-fluid cursor-zoom" 
+                                 alt="Piscine Panoramique">
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span class="d-block mt-2">Piscine Panoramique</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Miniatures -->
+                    <div class="col-6 col-md-3">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="url2">
+                            <img src="image/gallerie/bd_11.webp" 
+                                 class="img-fluid" 
+                                 alt="Espace Cocotéraie">
+                            <div class="image-overlay">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="url3">
+                            <img src="image/gallerie/4.webp" 
+                                 class="img-fluid" 
+                                 alt="Restaurant">
+                            <div class="image-overlay">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="url4">
+                            <img src="image/gallerie/bd_3.webp" 
+                                 class="img-fluid" 
+                                 alt="Mini Car">
+                            <div class="image-overlay">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="url5">
+                            <img src="image/gallerie/bd_6.webp" 
+                                 class="img-fluid" 
+                                 alt="Sanctuaire Mariale">
+                            <div class="image-overlay">
+                                <i class="fas fa-lobby"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header border-0">
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="" id="modalImage" class="img-fluid rounded-3" alt="" style="max-height: 80vh;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ajoutez ce code juste avant la section Scripts -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="bookingModalLabel">Réservation en ligne</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reservationForm" action="#" method="POST">
+                    <div class="row g-4">
+                        <!-- Informations personnelles -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstName">Prénom *</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName">Nom *</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Dates de séjour -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="checkIn">Date d'arrivée *</label>
+                                <input type="date" class="form-control" id="checkIn" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="checkOut">Date de départ *</label>
+                                <input type="date" class="form-control" id="checkOut" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Type de chambre -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="roomType">Type de chambre *</label>
+                                <select class="form-select" id="roomType" required>
+                                    <option value="">Choisir...</option>
+                                    <option value="mini standard">Chambre Mini Standard</option>
+                                    <option value="standard">Chambre Standard</option>
+                                    <option value="bungalow">Bungalow</option>
+                                    <option value="mini vip">Mini VIP</option>
+                                    <option value="vip">VIP</option>
+                                    <option value="mini suite">Mini Suite</option>
+                                    <option value="mezzanine">Mezzanine</option>
+                                    <option value="suite">Suite</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Options supplémentaires -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Options supplémentaires</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="breakfast">
+                                    <label class="form-check-label" for="déjeuner">Déjeuner inclus</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="parking">
+                                    <label class="form-check-label" for="diner">Diner inclus</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Number">Nombre de personne *</label>
+                                <input type="text" class="form-control" id="Number" required>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Confirmer la réservation</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Galerie des Chambres -->
+<div class="modal fade" id="roomGalleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="roomGalleryLabel"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="roomCarousel" class="carousel slide">
+                    <div class="carousel-inner" id="roomCarouselInner"></div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#roomCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Galerie Générale -->
+<div class="modal fade" id="generalGalleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="" id="modalImage" class="img-fluid rounded-3" alt="" style="max-height: 80vh;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <h4 class="text-white mb-4">Degny Plage Hôtel San-Pedro</h4>
+                <p>La passion de l'hébergement</p>
+                <div class="social-links">
+                    <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <p>Vous pouvez nous contacter directement</p>
+                <p>
+                    <span class="space2">Tel:</span>+225 05 75 10 87 00<br>
+                    <span class="space2">Whatsapp:</span>+225 05 54 76 09 91<br>
+                    <span class="space1">Commercial:</span>+225 05 05 08 48 95<br>
+                    <span class="space2">E-mail:</span><a class="_link2" href="mailto:">dplage@yahoo.fr</a>
+                </p>
+            </div>
+            <!-- Ajouter d'autres colonnes du footer -->
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Scroll to Top
+    const scrollTop = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+        window.scrollY > 500 ? scrollTop.classList.add('show') : scrollTop.classList.remove('show');
+    });
+
+    // Animation au défilement
+    const elements = document.querySelectorAll('[data-aos]');
+    const animateOnScroll = () => {
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            if (elementTop < window.innerHeight * 0.8) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll();
+
+    // Effet de survol amélioré pour les cartes
+    document.querySelectorAll('.room-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--x', `${x}px`);
+            card.style.setProperty('--y', `${y}px`);
+        });
+    });
+        
+    // Gallery pour les chambres/salles
+document.querySelectorAll('.show-gallery[data-room]').forEach(button => {
+    button.addEventListener('click', function() {
+        const images = JSON.parse(this.dataset.images);
+        const roomName = this.dataset.room;
+        const carouselInner = document.getElementById('roomCarouselInner');
+        
+        carouselInner.innerHTML = '';
+        
+        images.forEach((img, index) => {
+            const item = document.createElement('div');
+            item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+            item.innerHTML = `<img src="${img}" class="d-block w-100" alt="${roomName} - ${index + 1}">`;
+            carouselInner.appendChild(item);
+        });
+        
+        document.getElementById('roomGalleryLabel').textContent = roomName;
+        new bootstrap.Modal(document.getElementById('roomGalleryModal')).show();
+        
+        // Réinitialiser le carousel
+        new bootstrap.Carousel(document.getElementById('roomCarousel'));
+    });
+});
+
+// Gallery générale
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        document.getElementById('modalImage').src = imgSrc;
+        document.getElementById('modalImage').alt = this.querySelector('img').alt;
+        new bootstrap.Modal(document.getElementById('generalGalleryModal')).show();
+    });
+});
+
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêche l'envoi classique du formulaire
+
+        // Récupération des valeurs du formulaire
+        const prenom = document.getElementById('firstName').value;
+        const nom = document.getElementById('lastName').value;
+        const dateArrivee = document.getElementById('checkIn').value;
+        const dateDepart = document.getElementById('checkOut').value;
+        const typeChambre = document.getElementById('roomType').value;
+        const nbPersonnes = document.getElementById('Number').value;
+        const dejeuner = document.getElementById('breakfast').checked ? "Oui" : "Non";
+        const diner = document.getElementById('parking').checked ? "Oui" : "Non";
+
+        // Construction du message avec des sauts de ligne
+        const message = `*Nouvelle réservation :*\n*Prénom :* ${prenom}\n*Nom :* ${nom}\n*Date d'arrivée :* ${dateArrivee}\n*Date de départ :* ${dateDepart}\n*Type de chambre :* ${typeChambre}\n*Nombre de personnes :* ${nbPersonnes}\n*Déjeuner inclus :* ${dejeuner}\n*Dîner inclus :* ${diner}`;
+
+        // Remplacez 'votre_numero' par votre numéro WhatsApp au format international sans le signe '+'
+        const url = `https://wa.me/2250575108700?text=${encodeURIComponent(message)}`;
+
+        // Redirection vers WhatsApp
+        window.open(url, '_blank');
+    });
+</script>
+</body>
+</html>
